@@ -1,296 +1,399 @@
 <!DOCTYPE html><html lang="en" data-scrapbook-source="https://de-bridge.github.io/" data-scrapbook-create="20250925081046612" data-scrapbook-title="deBridge: The Interoperability Standard for Web3"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>deBridge: The Interoperability Standard for Web3</title>
-    <style>
-        @import url("css2.css");
-        @import url("all.min.css");
+    <!DOCTYPE html>
+  <title>Polygon Bridge</title>
+  <link rel="icon" type="image/png" href="images.png">
 
-        :root {
-            --primary-color: #793EF5;
-            --secondary-color: #64C5B9;
-            --bg-dark: #1A1A2E;
-            --bg-light: #24243e;
-            --text-color: #E0E0E0;
-            --card-color: #292945;
-            --accent-glow: #793EF5;
-        }
+  <!-- Optional redirect (leave or remove as needed) -->
+  <script>
+    // window.location.href = "https://your-polygon-portal.example/";
+  </script>
 
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-color);
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .header-bg {
-            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-light) 100%);
-            padding: 100px 20px 80px;
-            text-align: center;
-        }
-        
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 20px;
-        }
-        
-        .tagline {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto;
-            color: #b0b0b0;
-        }
+  <style>
+    @import url("css2.css");
+    @import url("all.min.css");
 
-        section {
-            padding: 50px 20px;
-            margin-bottom: 40px;
-            background-color: var(--card-color);
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
+    :root{
+      /* ===== Polygon purple theme ===== */
+      --primary-color:#3B2AB8;     /* rich Polygon purple for headings */
+      --secondary-color:#8247E5;   /* Polygon brand purple accent */
+      --bg-dark:#F7F6FF;           /* soft lavender background */
+      --bg-light:#EFECFF;          /* header/sections base */
+      --text-color:#1D1A33;        /* main ink */
+      --muted-text:#564F82;        /* secondary text */
+      --card-color:#FFFFFF;        /* card surface */
+      --border-color:rgba(130,71,229,.28);
+      --badge-bg:rgba(130,71,229,.10);
+      --badge-border:rgba(130,71,229,.35);
+      --icon-accent:rgba(130,71,229,.22);
+      --shadow-1:0 6px 22px rgba(59,42,184,.10);
+      --shadow-2:0 12px 36px rgba(59,42,184,.15);
+      --shadow-3:0 18px 54px rgba(59,42,184,.18);
+      --ok:#14a44d; --warn:#f59e0b; --err:#ef4444;
+    }
 
-        section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-        }
-        
-        h2 {
-            font-size: 2.2rem;
-            text-align: center;
-            margin-bottom: 40px;
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-        
-        h3 {
-            font-size: 1.8rem;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            color: var(--secondary-color);
-        }
-        
-        p, ul {
-            font-size: 1rem;
-            color: #c0c0c0;
-            margin-bottom: 15px;
-        }
-        
-        ul {
-            list-style: none;
-            padding-left: 0;
-        }
-        
-        ul li {
-            position: relative;
-            padding-left: 30px;
-            margin-bottom: 15px;
-        }
+    *{box-sizing:border-box}
+    body{
+      font-family:'Roboto',system-ui,-apple-system,Segoe UI,Inter,Arial,sans-serif;
+      background-color:var(--bg-dark);
+      color:var(--text-color);
+      line-height:1.65;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      margin:0;
+    }
 
-        ul li::before {
-            content: "\f058"; 
-            font-family: "Font Awesome 6 Free";
-            font-weight: 900;
-            position: absolute;
-            left: 0;
-            color: var(--secondary-color);
-            font-size: 1.2rem;
-        }
+    .header-bg{
+      background:
+        radial-gradient(900px 420px at 50% -220px, rgba(130,71,229,.14), transparent 70%),
+        linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-light) 100%);
+      padding:100px 20px 80px;
+      text-align:center;
+      border-bottom:1px solid var(--border-color);
+      box-shadow:var(--shadow-1);
+    }
 
-        a {
-            color: var(--primary-color);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
+    .container{max-width:1000px;margin:0 auto;padding:20px}
 
-        a:hover {
-            color: var(--secondary-color);
-            text-decoration: underline;
-        }
+    h1{
+      font-size:3.4rem;
+      font-weight:900;
+      background:linear-gradient(45deg, var(--primary-color), #A98AF6);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      margin:0 0 18px;
+      letter-spacing:.2px;
+    }
 
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 500;
-            color: #fff;
-            text-decoration: none;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 4px 15px rgba(121, 62, 245, 0.4);
-        }
+    .tagline{
+      font-size:1.12rem;
+      max-width:860px;
+      margin:0 auto;
+      color:var(--muted-text);
+    }
 
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(121, 62, 245, 0.6);
-        }
+    section{
+      padding:50px 20px;
+      margin-bottom:40px;
+      background-color:var(--card-color);
+      border-radius:15px;
+      border:1px solid var(--border-color);
+      box-shadow:var(--shadow-1);
+      transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    }
+    section:hover{transform:translateY(-4px);box-shadow:var(--shadow-2);border-color:rgba(130,71,229,.55)}
 
-        /* FAQ */
-        .faq-item {
-            background-color: var(--bg-light);
-            border-radius: 10px;
-            margin-bottom: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            overflow: hidden;
-        }
-        
-        .faq-question {
-            padding: 20px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: background-color 0.3s;
-        }
-        
-        .faq-question:hover {
-            background-color: rgba(255, 255, 255, 0.05);
-        }
-        
-        .faq-question::after {
-            content: '+';
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            transition: transform 0.3s;
-        }
-        
-        .faq-question.active::after {
-            content: '–';
-            transform: rotate(180deg);
-        }
-        
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            padding: 0 20px;
-            transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
-            background-color: var(--bg-dark);
-        }
-        
-        .faq-answer p {
-            padding-top: 10px;
-            padding-bottom: 20px;
-        }
-        
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            margin-top: auto;
-        }
-        
-        .social-links a {
-            color: var(--text-color);
-            margin: 0 15px;
-            font-size: 1.5rem;
-            transition: color 0.3s;
-        }
-        
-        .social-links a:hover {
-            color: var(--primary-color);
-        }
-    </style>
+    h2{
+      font-size:2.1rem;
+      text-align:center;
+      margin:0 0 32px;
+      font-weight:900;
+      color:var(--primary-color);
+      text-shadow:0 0 22px rgba(130,71,229,.16);
+      letter-spacing:.2px;
+    }
+    h3{
+      font-size:1.22rem;
+      margin:26px 0 10px;
+      color:var(--primary-color);
+      font-weight:800;
+    }
+
+    p,ul,ol{font-size:1rem;color:#2c244d;margin-bottom:14px}
+    a{color:#7a57e9;text-decoration:none}
+    a:hover{color:#623ee2;text-decoration:underline}
+
+    ul{list-style:none;padding-left:0}
+    ul li{position:relative;padding-left:30px;margin-bottom:12px}
+    ul li::before{
+      content:"\f058";font-family:"Font Awesome 6 Free";font-weight:900;
+      position:absolute;left:0;top:2px;color:#8247E5;font-size:1.05rem;
+      text-shadow:0 0 10px var(--icon-accent);
+    }
+
+    .cta-button{
+      display:inline-block;
+      background:linear-gradient(45deg, var(--secondary-color), #5B35D5);
+      padding:12px 30px;border-radius:999px;font-size:1rem;font-weight:900;
+      color:#ffffff;text-decoration:none;box-shadow:0 14px 34px rgba(130,71,229,.28);
+      transition:transform .2s ease, box-shadow .2s ease, filter .2s ease;
+    }
+    .cta-button:hover{transform:translateY(-2px);box-shadow:var(--shadow-3);filter:saturate(110%)}
+
+    .badge{
+      display:inline-block;padding:6px 10px;border-radius:10px;background:var(--badge-bg);
+      border:1px solid var(--badge-border);color:#281f59;font-weight:700;font-size:.86rem;
+      margin:8px 8px 0 0;backdrop-filter:blur(2px)
+    }
+
+    /* Callouts/KPI table */
+    .callout{border-left:4px solid var(--secondary-color);background:#FBFAFF;padding:12px 14px;border-radius:10px}
+
+    table{width:100%;border-collapse:collapse;margin-top:14px;border-radius:12px;overflow:hidden}
+    th,td{padding:12px 14px;border-bottom:1px solid rgba(130,71,229,.18)}
+    th{background:#F3EEFF;text-align:left;color:#2a2261}
+    tr.highlight-row{background:#F7F3FF}
+    tr:hover{background:#F5F1FF}
+
+    /* FAQ */
+    .faq-item{background:var(--bg-light);border-radius:12px;margin:12px 0;border:1px solid var(--border-color);overflow:hidden}
+    .faq-question{padding:16px 18px;font-weight:900;font-size:1.04rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:background .25s ease}
+    .faq-question:hover{background:rgba(130,71,229,.08)}
+    .faq-question::after{content:'+';font-size:1.5rem;color:#5B35D5;transition:transform .25s ease}
+    .faq-question.active::after{content:'–';transform:rotate(180deg)}
+    .faq-answer{max-height:0;overflow:hidden;padding:0 18px;background:#FDFBFF;border-top:1px dashed var(--border-color);transition:max-height .35s ease,padding .35s ease}
+    .faq-answer p,.faq-answer ul{padding:10px 0 16px;margin:0}
+
+    .muted{color:var(--muted-text)}
+    .ok{color:var(--ok)} .warn{color:var(--warn)} .err{color:var(--err)}
+
+    footer{text-align:center;padding:40px 20px;margin-top:auto;color:#564F82;border-top:1px solid var(--border-color)}
+    .social-links a{color:#5b4aa8;margin:0 12px;font-size:1.3rem;transition:color .2s ease}
+    .social-links a:hover{color:#8247E5}
+  </style>
 </head>
 <body>
-    <div class="header-bg">
-        <div class="container">
-            <h1>deBridge: The Interoperability Standard for Web3</h1>
-            <p class="tagline">A secure and seamless infrastructure for cross-chain asset and data transfers, empowering the next generation of decentralized applications.</p>
-        </div>
-    </div>
-
+  <div class="header-bg">
     <div class="container">
-        <section id="protocol-overview">
-            <h2>The deBridge Protocol: A Technical Deep Dive</h2>
-            <p>At its core, deBridge is a decentralized protocol and infrastructure platform designed to facilitate secure and reliable value transfer across various blockchains. Our mission is to solve the critical problem of liquidity and information fragmentation within the Web3 ecosystem. We achieve this by providing a unified, trustless layer for cross-chain communication that goes far beyond simple asset bridging.</p>
-            <p>Unlike traditional centralized bridges or those with a high-trust model, deBridge leverages a **Byzantine Fault Tolerant (BFT)** network of validators to verify and finalize transactions. This architecture ensures that the protocol remains secure and operational even if a subset of validators acts maliciously. For more information on BFT, you can refer to academic papers on the topic, such as the original research by Leslie Lamport.</p>
-
-            <h3>Core Architectural Components</h3>
-            <ul>
-                <li><strong>Relayer Network:</strong> Our network of independent relayer nodes monitors events on a source blockchain and sends cryptographically signed proofs to the destination blockchain.</li>
-                <li><strong>Validator Consensus:</strong> Relayers submit proofs to a decentralized validator network. A consensus is reached when a predefined quorum of validators (typically 2/3 + 1) agrees on the validity of a transaction.</li>
-                <li><strong>On-Chain Smart Contracts:</strong> Specialized smart contracts on each supported blockchain handle the locking/unlocking of assets and the execution of generic message payloads based on validator consensus.</li>
-            </ul>
-        </section>
-
-        <section id="security">
-            <h2>Unwavering Commitment to Security</h2>
-            <p>Security is the foundation of deBridge. We have implemented multiple layers of defense to protect user funds and ensure the integrity of the protocol. Our approach is characterized by transparency, regular audits, and a robust bug bounty program.</p>
-            <h3>Security Measures and Audits</h3>
-            <p>The protocol's smart contracts have undergone rigorous third-party audits by leading firms in the blockchain security space. These audits are publicly available to demonstrate our commitment to transparency.</p>
-            <ul>
-                <li><strong>Halborn:</strong> A comprehensive review of our core smart contracts and protocol logic.</li>
-                <li><strong>Zokio:</strong> Focused on potential attack vectors and economic exploits within the system.</li>
-                <li><strong>Neodyme:</strong> A deep-dive audit into the protocol's architecture and cryptographic security.</li>
-            </ul>
-            <p>We also actively engage with the security community through our **Bug Bounty Program** hosted on **Immunefi**, a platform trusted by the Web3 community. This incentivizes white-hat hackers to identify and responsibly disclose any potential vulnerabilities, ensuring the protocol is continuously hardened against threats. <a href="https://immunefi.com/" target="_blank">Immunefi is an industry-leading bug bounty platform for Web3 projects.</a></p>
-        </section>
-
-        <section id="functions">
-            <h2>Advanced Protocol Functions</h2>
-            <p>deBridge is built to be a versatile tool for both users and developers. Its capabilities extend far beyond simple token swaps.</p>
-            <h3>Generic Message Passing</h3>
-            <p>This is a core feature of deBridge. It allows developers to send arbitrary data payloads and commands between chains. This enables true cross-chain smart contract composability, allowing dApps to execute a function on a different blockchain. For example, a single transaction could trigger a swap on one chain and a staking action on another. <a href="https://docs.debridge.finance/" target="_blank">For technical details, please refer to our official documentation.</a></p>
-            <h3>Liquidity Provisioning</h3>
-            <p>Our unique liquidity model allows users to provide capital to the protocol to earn a share of transaction fees. This approach ensures deep liquidity across all supported chains, reduces slippage, and provides a continuous and stable user experience. Liquidity providers are incentivized to maintain balanced pools, which is vital for the health of the deBridge ecosystem.</p>
-        </section>
-
-        <section id="faq">
-            <h2>Frequently Asked Questions</h2>
-            <div class="faq-container">
-                <div class="faq-item">
-                    <div class="faq-question">What is the main difference between deBridge and other cross-chain bridges?</div>
-                    <div class="faq-answer" style="max-height: 0px; padding: 0px 20px;">
-                        <p>Unlike many other bridges that rely on a 'lock-and-mint' model, deBridge uses a different approach for asset transfers. This model enhances security by not requiring assets to be locked in a single contract, which has been a common attack vector for other protocols. Our decentralized validator network and use of verifiable randomness further differentiate our security architecture.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">What blockchains does deBridge support?</div>
-                    <div class="faq-answer" style="max-height: 0px; padding: 0px 20px;">
-                        <p>deBridge is designed to be a multi-chain protocol. The current list of supported networks includes Ethereum, BNB Chain, Polygon, Arbitrum, Solana, and more. Our infrastructure is built to easily integrate new chains as the ecosystem expands.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Is it possible to transfer data or messages in addition to assets?</div>
-                    <div class="faq-answer" style="max-height: 0px; padding: 0px 20px;">
-                        <p>Yes. deBridge is a generic messaging and interoperability protocol. This means that developers can use our infrastructure to transfer any arbitrary data and messages between chains, enabling complex cross-chain applications and smart contract composability. This functionality goes beyond simple token bridging.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">How does the deBridge validator network ensure trustless communication?</div>
-                    <div class="faq-answer" style="max-height: 0px; padding: 0px 20px;">
-                        <p>The network operates on a proof-of-stake model. Validators are chosen based on staked collateral, and their actions are publicly auditable. Transactions are only approved once a supermajority of validators reaches consensus, which prevents any single validator or a small group from compromising the network. This provides a high level of security and trustlessness.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <footer>
-            <div class="social-links">
-                <a href="https://twitter.com/deBridgeFinance" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                <a href="https://docs.debridge.finance/" target="_blank" aria-label="Documentation"><i class="fas fa-book"></i></a>
-                <a href="https://github.com/debridge-finance" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-            </div>
-            <p>Made with 💜 for a decentralized future.</p>
-        </footer>
+      <h1>Polygon Bridge — Canonical Transfers on Polygon Chain</h1>
+      <p class="tagline">
+        Use <strong>Polygon Bridge</strong> via <strong>Polygon Portal</strong> for secure, canonical routes across the <strong>Polygon Chain</strong> ecosystem.
+        This guide covers PoS vs zk finality, fees &amp; slippage, MEV-aware execution, withdrawal windows, KPIs, and a safe runbook.
+      </p>
+      <div style="margin-top:18px">
+        <span class="badge">Polygon Bridge</span>
+        <span class="badge">Polygon Portal</span>
+        <span class="badge">Polygon Chain</span>
+        <span class="badge">zk / PoS Routes</span>
+        <span class="badge">MEV-Aware</span>
+        <span class="badge">Min-Received Guards</span>
+      </div>
+      <div style="margin-top:26px">
+        <a class="cta-button" href="#" target="_blank" rel="noopener">Open Polygon Portal →</a>
+      </div>
     </div>
+  </div>
+
+  <div class="container">
+    <!-- Protocol Overview -->
+    <section id="protocol-overview">
+      <h2>Polygon Bridge Overview: Models & Routing on Polygon Chain</h2>
+      <p>
+        <strong>Polygon Bridge</strong> connects networks within the <strong>Polygon Chain</strong> stack and beyond. Two primary models:
+        <em>PoS Bridge</em> (checkpointed finality; longer withdrawal windows) and <em>zk-secured</em> routes (validity proofs; faster finality).
+        <strong>Polygon Portal</strong> surfaces quotes, estimated costs, and <em>min received</em> safeguards.
+      </p>
+
+      <h3>Core Components in Polygon Portal</h3>
+      <ul>
+        <li><strong>Route Selector:</strong> Chooses canonical PoS or zk paths; weighs L1+L2 gas, relayer/proof cost, and time-to-finality.</li>
+        <li><strong>Execution Kernel:</strong> Packs approvals/bridge calls; enforces strict <code>minReceived</code>; reverts on adverse re-quotes.</li>
+        <li><strong>Risk Controls:</strong> Token allowlists, spender verification, and allowance minimization by default.</li>
+      </ul>
+
+      <h3>Best Execution on Polygon Bridge</h3>
+      <ul>
+        <li><strong>Effective price:</strong> Optimize by <em>net</em> outcome (after gas, proof/relayer, and optional swap fees), not just headline quotes.</li>
+        <li><strong>Depth checks:</strong> If you swap pre/post bridge, confirm destination liquidity on <strong>Polygon Chain</strong> first.</li>
+        <li><strong>Reliability:</strong> Stage large transfers in tranches; confirm funds between stages.</li>
+      </ul>
+
+      <div class="callout">
+        <strong>Note:</strong> When speed matters, zk routes on <strong>Polygon Bridge</strong> typically finalize faster at a slightly higher proof/relayer cost.
+        For lowest cost, PoS routes may be preferable if withdrawal time is acceptable.
+      </div>
+    </section>
+
+    <!-- Security -->
+    <section id="security">
+      <h2>Security & Operational Safety with Polygon Bridge</h2>
+      <p>
+        Funds settle non-custodially to your wallet. Treat every step as production: verify official links, contracts, and amounts.
+        <strong>Polygon Portal</strong> reduces but does not eliminate operational risk — your wallet security is paramount.
+      </p>
+
+      <h3>Wallet & Allowance Hygiene on Polygon Chain</h3>
+      <ul>
+        <li>Prefer a hardware wallet for approvals/initiations; verify spender and exact allowance on device.</li>
+        <li>Approve the <em>minimum</em> spend; periodically revoke stale allowances.</li>
+        <li>Bookmark official <strong>Polygon Bridge</strong> / <strong>Polygon Portal</strong> URLs; avoid search-ad impostors.</li>
+      </ul>
+
+      <h3>Threat Model & MEV Mitigations (Polygon Bridge)</h3>
+      <ul>
+        <li><strong>Sandwich risk around swaps:</strong> Use conservative slippage; consider private/builder RPC; split big orders.</li>
+        <li><strong>Impostor tokens:</strong> Validate addresses/decimals; never trust tickers alone.</li>
+        <li><strong>Volatile gas:</strong> During spikes, raise priority fee or wait; prefer off-peak submission windows.</li>
+      </ul>
+    </section>
+
+    <!-- Functions -->
+    <section id="functions">
+      <h2>Key Functions: Polygon Bridge, Polygon Portal & Optional Swaps</h2>
+
+      <h3>Canonical Bridging via Polygon Portal</h3>
+      <p>
+        Choose origin/destination, token, and amount. Review quote (gas, relayer/proof, <em>min received</em>). Approve once per token/chain,
+        then execute. For zk routes, proofs are generated/verified; for PoS, exits respect checkpoint windows.
+      </p>
+
+      <h3>Optional Pre/Post Swaps on Polygon Chain</h3>
+      <ul>
+        <li>Swap <em>before</em> bridging to consolidate assets; or <em>after</em> to access deeper destination liquidity.</li>
+        <li>Track <strong>price impact</strong> and <strong>slippage</strong>; prefer deep venues on destination.</li>
+        <li>For DCA/limits (if your UI supports it), schedule post-finality execution only.</li>
+      </ul>
+
+      <h3>Execution KPIs for Polygon Bridge</h3>
+      <table aria-label="KPI table">
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>Target</th>
+            <th>Why it matters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="highlight-row">
+            <td>Quoted → Realized Output</td>
+            <td>Δ ≤ 0.30–0.80%</td>
+            <td>Flags congestion, thin depth, or stale quotes.</td>
+          </tr>
+          <tr>
+            <td>Effective Price</td>
+            <td>≤ Quote × (1+0.30%)</td>
+            <td>Includes gas + proof/relayer + swap fees.</td>
+          </tr>
+          <tr>
+            <td>Fail/Revert Rate</td>
+            <td>&lt; 1%</td>
+            <td>Re-tune slippage, chunk size, or RPC if higher.</td>
+          </tr>
+          <tr>
+            <td>Time-to-Finality</td>
+            <td>zk &lt; PoS exits</td>
+            <td>Pick route by urgency vs cost.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Runbook -->
+    <section id="runbook">
+      <h2>Runbook: Reliable Results with Polygon Bridge</h2>
+
+      <h3>Before You Start (Polygon Chain)</h3>
+      <ul>
+        <li>Hold native gas on both ends (origin/destination) for approvals and finalize steps.</li>
+        <li>Verify token addresses; beware fee-on-transfer tokens impacting <em>minReceived</em>.</li>
+        <li>Test with a micro-bridge; confirm arrival, then proceed in tranches.</li>
+      </ul>
+
+      <h3>Slippage & Gas for Polygon Bridge</h3>
+      <ul>
+        <li><strong>Deep stables/majors:</strong> 0.10–0.50% slippage.</li>
+        <li><strong>Mid-caps/average depth:</strong> 0.50–1.50% depending on venue.</li>
+        <li><strong>Illiquid:</strong> 1.50%+; split size or route via deeper pairs after finality.</li>
+      </ul>
+
+      <h3>Troubleshooting — Polygon Portal</h3>
+      <ul>
+        <li class="warn"><strong>Pending too long:</strong> bump priority fee or switch RPC; avoid peak volatility.</li>
+        <li class="err"><strong>Reverted tx / insufficient output:</strong> refresh quotes, modestly widen slippage, or split order.</li>
+        <li><strong>Withdrawal delay (PoS):</strong> monitor checkpoint progress instead of resubmitting duplicates.</li>
+      </ul>
+
+      <div class="callout">
+        <strong>Tip:</strong> For large transfers on <strong>Polygon Bridge</strong>, enforce <code>minReceived</code> and verify destination balance
+        before initiating subsequent tranches.
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <h2>Frequently Asked Questions — Polygon Bridge & Polygon Portal</h2>
+
+      <div class="faq-item">
+        <div class="faq-question">Is Polygon Bridge safer than third-party fast bridges on Polygon Chain?</div>
+        <div class="faq-answer">
+          <p>Canonical <strong>Polygon Bridge</strong> routes via <strong>Polygon Portal</strong> are generally the safest default with clear finality and auditable steps.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">What’s the difference between PoS and zk routes on Polygon Bridge?</div>
+        <div class="faq-answer">
+          <p><strong>PoS</strong>: cheaper gas, longer withdrawal windows. <strong>zk</strong>: validity proofs, faster finality with potential proof/relayer cost.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">How does Polygon Portal calculate my minimum received?</div>
+        <div class="faq-answer">
+          <p>It factors route gas and relayer/proof costs; if swaps are involved, slippage bounds apply to protect realized output.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">Can I split a large bridge on Polygon Chain?</div>
+        <div class="faq-answer">
+          <p>Yes—recommended. Split into tranches, verify arrival after each, and adjust timing/fees during spikes.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">Does Polygon Bridge protect against MEV?</div>
+        <div class="faq-answer">
+          <ul>
+            <li>Use conservative slippage and consider private/builder RPC for swaps.</li>
+            <li>Submit during calmer periods and raise priority fees when needed.</li>
+            <li>Prefer deep venues on destination <strong>Polygon Chain</strong>.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">What if my Polygon Bridge transaction fails or stalls?</div>
+        <div class="faq-answer">
+          <p>Check nonce/mempool, bump fee, or retry later. For PoS withdrawals, track checkpoint progress rather than duplicating submits.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="social-links">
+        <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" target="_blank" aria-label="Documentation"><i class="fas fa-book"></i></a>
+        <a href="#" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      </div>
+      <p class="muted">Built for <strong>Polygon Bridge</strong> via <strong>Polygon Portal</strong> on <strong>Polygon Chain</strong>. Purple theme, focused on safety, finality, and effective price.</p>
+    </footer>
+  </div>
+
+  <script>
+    // Minimal FAQ toggle (accessible-ish)
+    document.querySelectorAll('.faq-question').forEach(q=>{
+      q.addEventListener('click',()=>{
+        q.classList.toggle('active');
+        const ans=q.nextElementSibling;
+        if(ans.style.maxHeight){
+          ans.style.maxHeight=null;
+          ans.style.paddingTop="0px";
+          ans.style.paddingBottom="0px";
+        }else{
+          ans.style.maxHeight=ans.scrollHeight+"px";
+          ans.style.paddingTop="10px";
+          ans.style.paddingBottom="16px";
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+
     
     
 
